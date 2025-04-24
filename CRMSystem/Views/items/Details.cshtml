@@ -1,0 +1,52 @@
+﻿
+
+
+
+@model CRMSystem.Models.item
+
+@{
+    ViewBag.Title = "Item Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center text-primary mb-4">Item Details</h2>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-4 fw-bold">
+                @Html.DisplayNameFor(model => model.itemName)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.itemName)
+            </dd>
+
+            <dt class="col-sm-4 fw-bold">
+                @Html.DisplayNameFor(model => model.category)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.category)
+            </dd>
+
+            <dt class="col-sm-4 fw-bold">
+                @Html.DisplayNameFor(model => model.manufacturer)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.manufacturer)
+            </dd>
+
+            <dt class="col-sm-4 fw-bold">
+                @Html.DisplayNameFor(model => model.quntity)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.quntity)
+            </dd>
+        </dl>
+
+        <div class="d-flex justify-content-between mt-4">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.itemid }, new { @class = "btn btn-warning" })
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿
+
+@model IEnumerable<CRMSystem.Models.bill>
+
+@{
+    ViewBag.Title = "Bills List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">📜 Bills List</h2>
+        <a href="@Url.Action("Create")" class="btn btn-success">➕ Create New Bill</a>
+    </div>
+
+    <div class="card shadow-lg p-4">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.First().item)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().category)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().manufacturer)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().quntity)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().price)</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.item)</td>
+                        <td>@Html.DisplayFor(modelItem => item.category)</td>
+                        <td>@Html.DisplayFor(modelItem => item.manufacturer)</td>
+                        <td>@Html.DisplayFor(modelItem => item.quntity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.price)</td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Edit", new { id = item.itemid })" class="btn btn-warning btn-sm">✏️ Edit</a>
+                            <a href="@Url.Action("Details", new { id = item.itemid })" class="btn btn-info btn-sm">ℹ️ Details</a>
+                            <a href="@Url.Action("Delete", new { id = item.itemid })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this bill?');">🗑️ Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

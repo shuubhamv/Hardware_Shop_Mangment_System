@@ -1,0 +1,189 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Hardware</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+       
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background: linear-gradient(135deg, #f9f9f9, #e0e0e0);
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/image/image5.jpg') center/cover no-repeat;
+            text-align: center;
+            padding: 120px 20px;
+            color: white;
+            border-bottom: 6px solid #2c3e50;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+            header h1 {
+                font-size: 4rem;
+                font-weight: 600;
+                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+        main {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+            main p {
+                font-size: 1.2rem;
+                line-height: 1.8;
+                margin: 20px 0;
+                color: #555;
+            }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin: 40px 0 20px;
+            color: #2c3e50;
+            text-transform: uppercase;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+            ul li {
+                font-size: 1.2rem;
+                margin: 20px 0;
+                position: relative;
+                padding-left: 40px;
+            }
+
+                ul li::before {
+                    content: '\2022';
+                    color: #2c3e50;
+                    font-weight: bold;
+                    position: absolute;
+                    left: 10px;
+                    top: 0;
+                }
+
+        .section-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+            .section-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .section-card h2 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+                color: #2c3e50;
+            }
+
+            .section-card p {
+                font-size: 1.1rem;
+                color: #777;
+            }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+            .cta-button:hover {
+                background-color: #34495e;
+            }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+        }
+
+            footer a {
+                color: #ecf0f1;
+                text-decoration: none;
+                font-weight: 600;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>About Us</h1>
+    </header>
+
+    <main>
+        <section class="section-card">
+            <p><strong>Welcome to our Hardware Application!</strong> We empower class with a cutting-edge solution for managing student relationships, enhancing productivity.S</p>
+            <a href="@Url.Action("Contact", "Home")" class="cta-button">Contact Us</a>
+        </section>
+
+        <section class="section-card">
+            <h2>Our Mission</h2>
+            <p>Our mission is to help businesses of all sizes build and maintain meaningful relationships with their customers by offering powerful tools for sales tracking, marketing automation, and customer engagement.</p>
+        </section>
+
+        <section class="section-card">
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li><strong>Comprehensive Features:</strong> From lead management to customer analytics, our platform covers all your CRM needs.</li>
+                <li><strong>Scalability:</strong> Whether you're a small startup or a large enterprise, our solution scales with your business growth.</li>
+                <li><strong>Data Security:</strong> We prioritize your data security with top-notch encryption and privacy measures.</li>
+                <li><strong>Seamless Integration:</strong> Easily connect with third-party tools and systems for enhanced productivity.</li>
+            </ul>
+        </section>
+
+        <section class="section-card">
+            <h2>Our Vision</h2>
+            <p>We envision a world where businesses thrive by putting customers at the heart of their operations. Through continuous innovation and customer-centric development, we aim to be a leading name in the CRM industry.</p>
+        </section>
+
+        <section class="section-card">
+            <a href="@Url.Action("Contact", "Home")" class="btn">Contact</a>
+            <a href="@Url.Action("Index", "Home")" class="btn">Index</a>
+
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Hardware Application. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿
+
+
+
+@model IEnumerable<CRMSystem.Models.Customer>
+
+@{
+    ViewBag.Title = "Customer List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 class="my-3 text-center">Customer List</h2>
+
+    <div class="text-end mb-3">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    </div>
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th>@Html.DisplayNameFor(model => model.ContactInfo)</th>
+                <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.Address)</th>
+                <th>@Html.DisplayNameFor(model => model.itempurchesed)</th>
+                <th>@Html.DisplayNameFor(model => model.quntety)</th>
+                <th>@Html.DisplayNameFor(model => model.ammount)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ContactInfo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                    <td>@Html.DisplayFor(modelItem => item.itempurchesed)</td>
+                    <td>@Html.DisplayFor(modelItem => item.quntety)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ammount)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }, new { @class = "btn btn-warning btn-sm" })
+                        @Html.ActionLink("Details", "Details", new { id = item.CustomerID }, new { @class = "btn btn-info btn-sm mx-1" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

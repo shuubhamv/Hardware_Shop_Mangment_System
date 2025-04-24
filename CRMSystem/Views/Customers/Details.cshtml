@@ -1,0 +1,70 @@
+﻿
+
+@model CRMSystem.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-primary">Customer Details</h2>
+
+<div class="card p-4 shadow-sm">
+    <h4 class="text-secondary">Customer Information</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.ContactInfo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ContactInfo)
+        </dd>
+
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.itempurchesed)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.itempurchesed)
+        </dd>
+
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.quntety)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.quntety)
+        </dd>
+
+        <dt class="col-sm-3 font-weight-bold">
+            @Html.DisplayNameFor(model => model.ammount)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ammount)
+        </dd>
+    </dl>
+</div>
+
+<div class="mt-3">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CustomerID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+</div>

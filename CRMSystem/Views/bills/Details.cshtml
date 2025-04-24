@@ -1,0 +1,48 @@
+﻿
+
+@model CRMSystem.Models.bill
+
+@{
+    ViewBag.Title = "Bill Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">📄 Bill Details</h2>
+        <a href="@Url.Action("Index")" class="btn btn-outline-secondary">← Back to List</a>
+    </div>
+
+    <div class="card shadow-lg p-4">
+        <h4 class="text-secondary">Bill Information</h4>
+        <hr />
+
+        <table class="table table-bordered">
+            <tr>
+                <th class="bg-light">Item</th>
+                <td>@Html.DisplayFor(model => model.item)</td>
+            </tr>
+            <tr>
+                <th class="bg-light">Category</th>
+                <td>@Html.DisplayFor(model => model.category)</td>
+            </tr>
+            <tr>
+                <th class="bg-light">Manufacturer</th>
+                <td>@Html.DisplayFor(model => model.manufacturer)</td>
+            </tr>
+            <tr>
+                <th class="bg-light">Quantity</th>
+                <td>@Html.DisplayFor(model => model.quntity)</td>
+            </tr>
+            <tr>
+                <th class="bg-light">Price</th>
+                <td>@Html.DisplayFor(model => model.price)</td>
+            </tr>
+        </table>
+
+        <div class="text-end mt-3">
+            <a href="@Url.Action("Edit", new { id = Model.itemid })" class="btn btn-warning">✏️ Edit</a>
+            <a href="@Url.Action("Index")" class="btn btn-outline-secondary ms-2">Back to List</a>
+        </div>
+    </div>
+</div>

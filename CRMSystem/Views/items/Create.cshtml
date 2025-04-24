@@ -1,0 +1,54 @@
+﻿
+@model CRMSystem.Models.item
+
+@{
+    ViewBag.Title = "Create Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 class="text-center my-4">Create New Item</h2>
+
+    <div class="card shadow-lg p-4">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4 class="text-primary">Item Details</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.itemName, htmlAttributes: new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.itemName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter item name" } })
+                    @Html.ValidationMessageFor(model => model.itemName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.category, htmlAttributes: new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.category, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter category" } })
+                    @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.manufacturer, htmlAttributes: new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.manufacturer, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter manufacturer" } })
+                    @Html.ValidationMessageFor(model => model.manufacturer, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.quntity, htmlAttributes: new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.quntity, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter quantity" } })
+                    @Html.ValidationMessageFor(model => model.quntity, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Back to List</a>
+                    <button type="submit" class="btn btn-success">Create Item</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,301 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - HARDWARE</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            background: #f8f9fa;
+            flex-direction: column;
+        }
+
+        /* Top Navbar */
+        .top-nav {
+            width: 100%;
+            background: #008b8b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 60px;
+            z-index: 1000;
+        }
+
+            .top-nav .logo {
+                display: flex;
+                align-items: center;
+            }
+
+                .top-nav .logo img {
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 10px;
+                }
+
+            .top-nav .user-info {
+                display: flex;
+                align-items: center;
+            }
+
+                .top-nav .user-info span {
+                    margin-right: 15px;
+                    font-weight: bold;
+                }
+
+            .top-nav .logout {
+                color: white;
+                text-decoration: none;
+                background: #d9534f;
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
+
+                .top-nav .logout:hover {
+                    background: #c9302c;
+                }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #008b8b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+            top: 60px;
+            transition: 0.3s;
+        }
+
+            .sidebar .menu {
+                margin-top: 20px;
+            }
+
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                .sidebar ul li {
+                    margin: 15px 0;
+                }
+
+                    .sidebar ul li a {
+                        text-decoration: none;
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        font-size: 18px;
+                        padding: 10px;
+                        border-radius: 5px;
+                    }
+
+                        .sidebar ul li a:hover {
+                            background: #006666;
+                        }
+
+                        .sidebar ul li a i {
+                            margin-right: 10px;
+                        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            margin-top: 70px;
+            flex-grow: 1;
+            padding: 20px;
+            transition: margin-left 0.3s;
+            width: calc(100% - 250px);
+        }
+
+        /* Hide sidebar when not needed */
+        .no-sidebar {
+            margin-left: 0;
+            width: 100%;
+        }
+    </style>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    @{
+        // Get the current controller and action
+        var currentController = ViewContext.RouteData.Values["controller"].ToString();
+        var currentAction = ViewContext.RouteData.Values["action"].ToString();
+
+        // Hide sidebar for login and register pages
+        bool hideSidebar = currentController == "Account" && (currentAction == "Login" || currentAction == "Register");
+    }
+
+    <!-- Top Navigation Bar -->
+    <div class="top-nav">
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" alt="Hardware Logo">
+            <span>Hardware Shop</span>
+        </div>
+
+        <div class="user-info">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span>Welcome, @User.Identity.Name</span>
+                <a href="@Url.Action("Logout", "Account")" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            }
+            else
+            {
+                <a href="@Url.Action("Login", "Account")" class="logout"><i class="fas fa-sign-in-alt"></i> Login</a>
+            }
+        </div>
+    </div>
+
+    @if (!hideSidebar)
+    {
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="menu">
+                <ul>
+                    <li><a href="@Url.Action("Index", "Customers")"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="@Url.Action("Index", "items")"><i class="fas fa-box"></i> Items</a></li>
+                    <li><a href="@Url.Action("Index", "Customers")"><i class="fas fa-users"></i> Customers</a></li>
+                    <li><a href="@Url.Action("Index", "bills")"><i class="fas fa-file-invoice"></i> Billing</a></li>
+
+                    <li><a href="@Url.Action("Index", "Home")"><i class="fas fa-users"></i> About Us</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")"><i class="fas fa-c"></i> Contact Us</a></li>
+                    <li><a href="@Url.Action("Logout", "Account")" class="text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+
+    <!-- Main Content -->
+    <div class="main-content @(hideSidebar ? "no-sidebar" : "")">
+        <div class="container mt-4">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Hardware</p>
+            </footer>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+
+
+
+
+@*/////*@
+@*<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - HARDWARE</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+        <style>
+            .custom-left-menu {
+                margin-right: auto; /* Pushes the menu to the left */
+                margin-left: 0;
+                display: flex;
+                align-items: center;
+            }
+
+            .navbar-nav .nav-item {
+                margin-right: 15px; /* Space between links */
+            }
+
+            .navbar-nav .nav-link {
+                color: white; /* Adjust color based on your theme */
+                font-weight: 500;
+                padding: 10px 15px;
+            }
+
+                .navbar-nav .nav-link:hover {
+                    color: #f8f9fa; /* Lighter color on hover */
+                    text-decoration: none;
+                }
+
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                @Html.ActionLink("HARDWARE ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+
+                        <ul class="navbar-nav custom-left-menu">
+                            @if (User.IsInRole("Customer"))
+                            {
+                                <li class="nav-item">@Html.ActionLink(" Dashboard", "Index", "Customers", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li class="nav-item">@Html.ActionLink("Bilss", "Index", "bills", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li class="nav-item">@Html.ActionLink("Items", "Index", "items", new { area = "" }, new { @class = "nav-link" })</li>
+
+                            }
+                        </ul>
+
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("Logout", "Account")" class="btn btn-danger btn-sm ms-2">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">@Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "nav-link btn btn-primary btn-sm" })</li>
+                        }
+                    </ul>
+                    </div>
+            </div>
+        </nav>
+
+        <div class="container mt-4">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Hardware</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@
+
+

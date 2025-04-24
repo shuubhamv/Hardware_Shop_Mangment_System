@@ -1,0 +1,88 @@
+﻿
+
+@model CRMSystem.Models.Customer
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Client Bill</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Customer</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Name</label>
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            </div>
+            <div class="col-md-6">
+                <label>Contact Info</label>
+                @Html.TextBoxFor(model => model.ContactInfo, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Phone Number</label>
+                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+            </div>
+            <div class="col-md-6">
+                <label>Address</label>
+                @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Item Purchased</label>
+                @Html.TextBoxFor(model => model.itempurchesed, new { @class = "form-control" })
+            </div>
+            <div class="col-md-6">
+                <label>Quantity</label>
+                @Html.TextBoxFor(model => model.quntety, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Amount</label>
+                @Html.TextBoxFor(model => model.ammount, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-warning">Add To Bill</button>
+            </div>
+            <div class="col-md-4">
+                <button type="reset" class="btn btn-danger">Reset</button>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-success">Print Bill</button>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <fieldset>
+                    <legend>Payment Mode</legend>
+                    <label><input type="radio" name="paymentMode" value="Cash" /> Cash</label>
+                    <label><input type="radio" name="paymentMode" value="Card" /> Card</label>
+                    <label><input type="radio" name="paymentMode" value="Mobile" /> Mobile</label>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

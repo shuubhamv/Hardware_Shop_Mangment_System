@@ -1,0 +1,149 @@
+﻿@model CRMSystem.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at right, #6a00ff, #000);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #fff;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+            .navbar a {
+                color: white;
+                text-decoration: none;
+                margin: 0 15px;
+                font-weight: 500;
+            }
+
+            .navbar .logo {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            /*margin-top:;*/ /* Ensure content doesn't overlap navbar */
+        }
+
+        .register-box {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background: #222;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #9b59b6, #6a00ff);
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .btn:hover {
+                background: linear-gradient(90deg, #6a00ff, #9b59b6);
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="register-box">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Role)    @* "Admin", "Employee",*@
+                    @Html.DropDownListFor(m => m.Role, new SelectList(new[] { "Customer" }), "-- Select Role --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Role)
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn">Register</button>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

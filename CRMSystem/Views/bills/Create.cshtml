@@ -1,0 +1,68 @@
+﻿
+
+@model CRMSystem.Models.bill
+
+@{
+    ViewBag.Title = "Create Bill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">Create Bill</h2>
+        <a href="@Url.Action("Index")" class="btn btn-outline-secondary">← Back to List</a>
+    </div>
+
+    <div class="card shadow-lg p-4">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4 class="text-secondary">Bill Details</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.item, new { @class = "form-label fw-bold" })
+                        @Html.EditorFor(model => model.item, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.item, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.category, new { @class = "form-label fw-bold" })
+                        @Html.EditorFor(model => model.category, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.manufacturer, new { @class = "form-label fw-bold" })
+                        @Html.EditorFor(model => model.manufacturer, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.manufacturer, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.quntity, new { @class = "form-label fw-bold" })
+                        @Html.EditorFor(model => model.quntity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.quntity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        @Html.LabelFor(model => model.price, new { @class = "form-label fw-bold" })
+                        @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mt-3 text-end">
+                    <button type="submit" class="btn btn-success">💾 Save Bill</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
